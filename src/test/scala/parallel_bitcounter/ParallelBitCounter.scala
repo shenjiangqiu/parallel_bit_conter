@@ -1,0 +1,17 @@
+package parallel_bitcounter
+
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+import chisel3.experimental.BundleLiterals._
+
+class ParalTest extends FreeSpec with ChiselScalatestTester {
+
+  "Gcd should calculate proper greatest common denominator" in {
+    test(new ParallelBitCounter()) { dut =>
+      dut.io.in.poke(3.U)
+      dut.clock.step(1)
+      dut.io.count_out.expect(2.U)
+    }
+  }
+}
